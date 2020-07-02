@@ -1,4 +1,5 @@
 #!/bin/sh
+
 api=$1
 key=$2
 nodeId=$3
