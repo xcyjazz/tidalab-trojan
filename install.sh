@@ -1,16 +1,4 @@
 #!/bin/sh
-echo '正在安装依赖'
-if cat /etc/os-release | grep "centos" > /dev/null
-    then
-    yum update > /dev/null
-    yum install unzip wget curl -y > /dev/null
-    yum update curl -y
-else
-    apt update > /dev/null
-    apt-get install unzip wget curl -y > /dev/null
-    apt-get update curl -y
-fi
-
 api=$1
 key=$2
 nodeId=$3
@@ -33,7 +21,7 @@ rm -rf $folder
 mkdir $folder
 cd $folder
 wget https://github.com/tokumeikoi/tidalab-trojan/releases/latest/download/tidalab-trojan
-wget https://github.com/p4gefau1t/trojan-go/releases/download/v0.7.7/trojan-go-linux-amd64.zip
+wget https://github.com/p4gefau1t/trojan-go/releases/download/v0.7.5/trojan-go-linux-amd64.zip
 curl "${api}/api/v1/server/TrojanTidalab/config?token=${key}&node_id=${nodeId}&local_port=${localPort}" > ./config.json
 
 if cat config.json | grep "run_type" > /dev/null
